@@ -3,7 +3,7 @@ require "ip/version"
 
 module Ip
   class IpSearch
-    def initialize(file='ip/qqwry.dat')
+    def initialize(file='lib/qqwry.dat')
       filename = file
       @file = File.open(filename,"r")
       @index_first,@index_last  = @file.read(8).unpack('L2')
@@ -114,12 +114,12 @@ module Ip
 
     #取得国家，UTF8编码
     def country
-      Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:country])
+      @location[:country].encode('UTF-8','GB2312')
     end
 
     #取得地区，UTF8编码
     def area
-      Iconv.iconv('UTF-8//IGNORE','GB2312//IGNORE',@location[:area])
+      @location[:area].encode('UTF-8','GB2312')
     end
 
     #取得国家，GB2312编码
